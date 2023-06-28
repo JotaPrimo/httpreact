@@ -42,6 +42,10 @@ export const useFecth = (url) => {
   const [callFetch, setCallFetch] = useState(false);
 
 
+  // 6 - loading
+  const [loading, setLoading] = useState(false); 
+
+
   // configurando http config
   const httpConfig = (data, method) => {
     if (isPost) {
@@ -60,6 +64,11 @@ export const useFecth = (url) => {
 
   useEffect(() => {
     const fetchData = async () => {
+
+        // 6 loading
+setLoading(true);
+
+
       // primeiro vem em texto
       const res = await fetch(url);
 
@@ -72,6 +81,9 @@ export const useFecth = (url) => {
 
     // executando minha funcao de fech data
     fetchData();
+
+    setLoading(false);
+
   }, [url, callFetch]);
 
   // 5 refatorando o post
@@ -93,5 +105,5 @@ export const useFecth = (url) => {
 
   }, [config, method, url]);
 
-  return { data, httpConfig };
+  return { data, httpConfig, loading };
 };

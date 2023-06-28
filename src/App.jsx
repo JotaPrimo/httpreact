@@ -13,7 +13,7 @@ function App() {
 
   // 4 custom hook 
   // esse : é uma alias, como em bano de dados
-  const { data: items, httpConfig } = useFecth(URL_BASE);
+  const { data: items, httpConfig, loading } = useFecth(URL_BASE);
 
   console.log(items);
 
@@ -75,11 +75,16 @@ function App() {
     // items && é um if, verifica se existe, depois faz
     <>
       <h1>Lista de Produtos</h1>
-      <ul>
+
+      {/* 66 loading */}
+      {/** enquanto estiver aguardando dados mostra esse loadin */}
+      { loading && <p > Buscando dados...</p> }
+
+      { !loading && <ul>
          { items && items.map(({id, name, price}) => (
           <li key={id}> {name} : R$ {price} </li>
         ))}
-      </ul>
+      </ul> }
 
       <hr />
 
@@ -94,7 +99,7 @@ function App() {
           <input type="text" name="price" value={price} onChange={(event) => setPrice(event.target.value)} />
         </label>
 
-        <button type="submit">Salvar</button>
+       { !loading &&  <button type="submit">Salvar</button>}
 
       </form>
     </>
