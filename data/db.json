@@ -19,6 +19,11 @@
       "name": "dasdasd",
       "price": "78",
       "id": 4
+    },
+    {
+      "name": "Teclado",
+      "price": "110",
+      "id": 5
     }
   ]
 }

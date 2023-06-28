@@ -35,7 +35,6 @@ function App() {
       price
     }
 
-
     const res = await fetch(URL_BASE, {
       method: 'POST',
       headers: {
@@ -44,6 +43,16 @@ function App() {
 
       body: JSON.stringify(produto)
     })
+
+    // res não é json, é texto, por isso converti
+    const addedProduto = await res.json();
+
+    setProdutos((prevProdutos) => [...prevProdutos, addedProduto]);
+
+    // resetando inputs
+    setName("");
+    setPrice("");
+
   }
 
   return (
